@@ -1,0 +1,1 @@
+package com.petrbambas.rest.products.model;
