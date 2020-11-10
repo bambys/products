@@ -9,7 +9,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.petrbambas.rest.products.model.Product;
 
 @Repository
@@ -18,6 +17,7 @@ public class ProductDaoImpl implements ProductDao {
 	private EntityManager em;
 	
 	@Autowired
+	// instance of EntityManager
 	public ProductDaoImpl(EntityManager em) {
 		this.em = em;
 	}
@@ -32,5 +32,13 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> products = theQuery.getResultList();
 		return products;
 	}
+
+	@Override
+	public Product findById(int id) {
+			Session currentSession = em.unwrap(Session.class);
+			// get product from database by Id
+			Product product = currentSession.get(Product.class, id);
+			return product;
+		}
 
 }
