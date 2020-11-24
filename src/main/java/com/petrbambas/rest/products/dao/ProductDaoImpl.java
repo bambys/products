@@ -27,12 +27,13 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> findAll() {
 		Session currentSession = em.unwrap(Session.class);
 		// construction of the SQL command
-		Query<Product> theQuery=currentSession.createQuery("from Product", Product.class);
+		Query<Product> query=currentSession.createQuery("from Product", Product.class);
 		//  get result list
-		List<Product> products = theQuery.getResultList();
+		List<Product> products = query.getResultList();
 		return products;
 	}
 
+	
 	@Override
 	public Product findById(int id) {
 			Session currentSession = em.unwrap(Session.class);
@@ -41,4 +42,21 @@ public class ProductDaoImpl implements ProductDao {
 			return product;
 		}
 
+	
+	@Override
+	public void save(Product product) {
+		// save new or update already saved product
+		Session currentSession = em.unwrap(Session.class);
+		currentSession.saveOrUpdate(product);
+		
+	}
+
+	@Override
+	public void deleteById(int id) {
+		Session currentSession = em.unwrap(Session.class);
+		// construction of the query
+		Query query = currentSession.createQuery("delete from Employee where id=:employeeId");
+		query.setParameter("employeeId", id);
+		query.executeUpdate();
+	}
 }

@@ -32,5 +32,4 @@ public class SecurityConfig
           .roles("USER");
     }
        
-    
 }
