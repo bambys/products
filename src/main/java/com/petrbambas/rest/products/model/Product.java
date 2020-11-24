@@ -1,12 +1,16 @@
 package com.petrbambas.rest.products.model;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +25,13 @@ public class Product {
 	private String code;
 	@Column(name="description")
 	private String description;
-		// in this case Long is used - the price is  
 	@Column(name="price")
 	private BigDecimal price;
+	@OneToMany(mappedBy = "product", cascade = {
+	        CascadeType.ALL
+	    })
+	private Set <Stock> stocks;
+	
 	
 	public Product() {
 	}
