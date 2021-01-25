@@ -1,4 +1,4 @@
-"# products" 
+# products
 
 Products is the REST API written in Java using Spring Boot 2 and Hibernate that provides endpoints for 3rd party
 
