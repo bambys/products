@@ -1,7 +1,6 @@
 package com.petrbambas.rest.products.dao;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 
@@ -10,7 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import com.petrbambas.rest.products.model.Product;
+
 import com.petrbambas.rest.products.model.Stock;
 
 @Repository
@@ -24,7 +23,18 @@ public class StockDaoImpl implements StockDao {
 		this.em = em;
 	}
 	
+	
+	@Override
+	public List<Stock> findAll() {
+		Session currentSession = em.unwrap(Session.class);
+		// construction of the SQL command
+		Query<Stock> query=currentSession.createQuery("from Stock", Stock.class);
+		//  get result list
+		List<Stock> stocks = query.getResultList();
+		return stocks;
+	}
 
+	
 	@Override
 	@Transactional
 	public  List<Stock> findByProductId(int id) {

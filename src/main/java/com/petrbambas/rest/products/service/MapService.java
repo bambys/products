@@ -7,47 +7,41 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.petrbambas.rest.products.dao.ProductDao;
+import com.petrbambas.rest.products.dao.StockDao;
 import com.petrbambas.rest.products.dto.ProductWarehouseStock;
-import com.petrbambas.rest.products.model.Product;
+import com.petrbambas.rest.products.model.Stock;
 
 @Service
 public class MapService {
 
-    @Autowired
-    private ProductDao productDao;
-    
-    @Autowired
-    private ModelMapper modelMapper;
+	@Autowired
+	private StockDao stockDao;
 
-    public List<ProductWarehouseStock> getAllProductsWarehousesStocks() {
-       return ((List<Product>) productDao
-                .findAll())
-                .stream()
-                .map(this::convertToProductWarehouseStockDTO)
-                .collect(Collectors.toList());
+	@Autowired
+	private ModelMapper modelMapper;
+
+	public List<ProductWarehouseStock> getAllProductsWarehousesStocks() {
+		return ((List<Stock>) stockDao.findAll()).stream().map(this::convertToProductWarehouseStockDTO)
+				.collect(Collectors.toList());
 	}
 
-    private ProductWarehouseStock convertToProductWarehouseStockDTO(Product product) {
-    	ProductWarehouseStock pws = new ProductWarehouseStock();
-    	pws.setProduct_id(product.getId());
-    	pws.setCode(product.getCode()); 
-    	pws.setDescription(product.getDescription());
-        /*userLocationDTO.setUsername(user.getUsername());
-        Location location = user.getLocation();
-        userLocationDTO.setLat(location.getLat());
-        userLocationDTO.setLng(location.getLng());
-        userLocationDTO.setPlace(location.getPlace());
-        */
-        return pws;      
-    }
-    
-/*    private ProductWarehouseStock convertToProductWarehouseStockDTO(Product product) { 
-        modelMapper.getConfiguration()
-                .setMatchingStrategy(MatchingStrategies.LOOSE);
-        ProductWarehouseStock productWarehouseStock = modelMapper
-                .map(product, ProductWarehouseStock.class);	
-        return productWarehouseStock;
-    }
-*/    
+	private ProductWarehouseStock convertToProductWarehouseStockDTO(Stock stock) {
+		ProductWarehouseStock pws = new ProductWarehouseStock();
+		pws.setProduct_id(stock.getProduct().getId());
+		pws.setCode(stock.getProduct().getCode());
+		pws.setDescription(stock.getProduct().getDescription());
+		pws.setWarehouse(stock.getWarehouse().getName());
+		pws.setQuantity(stock.getQuantity());
+		pws.setWarehouse_id(stock.getWarehouse().getId());
+
+		return pws;
+	}
+
+	/* 
+	 * private ProductWarehouseStock convertToProductWarehouseStockDTO(Product
+	 * product) { modelMapper.getConfiguration()
+	 * .setMatchingStrategy(MatchingStrategies.LOOSE); ProductWarehouseStock
+	 * productWarehouseStock = modelMapper .map(product,
+	 * ProductWarehouseStock.class); return productWarehouseStock; }
+	 */
 }

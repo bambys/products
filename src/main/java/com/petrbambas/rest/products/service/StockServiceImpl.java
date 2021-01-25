@@ -14,6 +14,7 @@ public class StockServiceImpl implements StockService {
 	@Autowired
 	private StockDao stockDao;
 	
+	// returns the quantity of concrete product on all warehouses 
 	@Override
 	@Transactional
 	public List<Stock> findStockByProductId(int id) {

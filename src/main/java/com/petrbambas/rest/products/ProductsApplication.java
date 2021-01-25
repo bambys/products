@@ -10,9 +10,9 @@ public class ProductsApplication {
 
 	@Bean
 	public ModelMapper modelMapper() {
-	    return new ModelMapper();
+		return new ModelMapper();
 	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProductsApplication.class, args);
 	}

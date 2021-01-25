@@ -11,37 +11,34 @@ import com.petrbambas.rest.products.model.Product;
 public class ProductServiceImpl implements ProductService {
 
 	private ProductDao ProductDao;
-	
 
 	public ProductServiceImpl(ProductDao theProductDao) {
 		ProductDao = theProductDao;
 	}
+
 	@Override
 	@Transactional
 	public List<Product> findAll() {
 		return ProductDao.findAll();
 	}
 
-	
 	@Override
 	@Transactional
 	public Product findById(int id) {
 		return ProductDao.findById(id);
 	}
 
-	/*
 	@Override
 	@Transactional
-	public void save(Product theProduct) {
-		ProductDao.save(theProduct);
+	public void save(Product product) {
+		ProductDao.save(product);
 	}
 
 	@Override
 	@Transactional
-	public void deleteById(int theId) {
-		ProductDao.deleteById(theId);
-		
+	public void deleteById(int id) {
+		ProductDao.deleteById(id);
+
 	}
-	
-	*/
+
 }
