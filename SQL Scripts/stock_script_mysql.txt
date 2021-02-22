@@ -1,0 +1,21 @@
+CREATE DATABASE  IF NOT EXISTS `store`;
+USE `store`;
+
+-- table definition
+DROP TABLE IF EXISTS `stock`;
+CREATE TABLE stock (
+    id int NOT NULL AUTO_INCREMENT,
+    warehouseid int NOT NULL,
+    productid int NOT NULL,
+    quantity decimal(20,3) DEFAULT 0,
+    PRIMARY KEY (id),
+    CONSTRAINT FK_warehousestock FOREIGN KEY (warehouseid)
+    REFERENCES warehouse(id),
+    CONSTRAINT FK_productstock FOREIGN KEY (productid)
+    REFERENCES product(id)
+);
+
+INSERT INTO stock values
+(1, 1, 1, 50),
+(2, 2, 1, 32),
+(3, 3, 2, 6)

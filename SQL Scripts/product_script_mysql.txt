@@ -1,0 +1,21 @@
+CREATE DATABASE  IF NOT EXISTS `store`;
+USE `store`;
+
+-- table definition
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `code` varchar(25) DEFAULT NULL,
+  `description` varchar(80) DEFAULT NULL,
+  `price` decimal(13,4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+-- Data 
+INSERT INTO `product` VALUES 
+	(1,'MWTL2CZ/A','Apple MacBook Air 13, i3 1.1GHz, 8GB, 256GB,',28500),
+	(2,'20RA0016MC','Lenovo ThinkPad E14-IML','19700'),
+	(3,'1J3T9EA','HP ZBook Studio G7','74800'),
+	(4,'3490-9272','Dell Vostro 14 (3490)','18120'),
+	(5,'20NX000DMC','Lenovo ThinkPad T490s',52800);
+ 

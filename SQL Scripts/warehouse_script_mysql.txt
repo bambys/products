@@ -1,0 +1,20 @@
+CREATE DATABASE  IF NOT EXISTS `store`;
+USE `store`;
+
+-- table definition
+DROP TABLE IF EXISTS `warehouse`;
+CREATE TABLE `warehouse` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `city` varchar(80) DEFAULT NULL,
+  `street` varchar(80) DEFAULT NULL,
+  `plz` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- Data 
+INSERT INTO `warehouse` VALUES 
+	(1,'Central warehouse Glasgow','Glasgow','Wellington St. 48','14Y00'),
+	(2,'Warehouse London','London','Green St. 544','1ER00'),
+	(3,'Warehouse Manchester','Manchester','River St. 53/2','RE459') 
+    
