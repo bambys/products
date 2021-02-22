@@ -4,8 +4,9 @@ Products is the REST API written in Java using Spring Boot 2 and Hibernate that 
 
 ## Installation
 
-Standard Maven project, it connects to MySQL database defined in Resources directory. 
-The API is secured by Basic Auth - see src\main\java\com\petrbambas\rest\products\config\SecurityConfig.java
+Standard Maven project, it connects to MySQL database defined in Resources directory. Initial scripts for 
+MySQL database settings are saved in folder SQL Scripts. 
+The API is secured by Basic Auth - see src\main\java\com\petrbambas\rest\products\config\SecurityConfig.java. 
 
 ## Usage
 
